@@ -1,0 +1,26 @@
+div.box {
+  height: 2vh;
+  width: 2vh;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  div.bullet-dot {
+    height: 1vh;
+    width: 1vh;
+    border-radius: 50%;
+  }
+}
+
+.veg {
+  border: 1px solid green;
+  .bullet-dot {
+    background-color: green;
+  }
+}
+.non-veg {
+  border: 1px solid red;
+  .bullet-dot {
+    background-color: red;
+  }
+}

@@ -1,0 +1,23 @@
+@defer(when bannerImages().length > 0) {
+
+<ion-row>
+  <div>
+    <swiper-container
+      [modules]="swiperModules"
+      [slidesPerView]="1"
+      [spaceBetween]="20"
+      initial-slide="0"
+      centered-slides="true"
+      [pagination]="{ clickable: true, dynamicBullets: true }"
+    >
+
+    @for(image of bannerImages(); track $index) {
+      <swiper-slide>
+        <img [src]="image?.banner">
+      </swiper-slide>
+    }
+    </swiper-container>
+  </div>
+</ion-row>
+
+}

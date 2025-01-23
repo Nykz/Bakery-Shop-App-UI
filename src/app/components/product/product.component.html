@@ -1,0 +1,42 @@
+@defer(when item !== null) {
+<ion-card [routerLink]="['/', 'tabs', 'products', item()?.id]">
+  <ion-thumbnail>
+    <ion-img
+      [src]="item()?.image || 'assets/products/chocolate-cake.jpg'"
+    ></ion-img>
+
+    <!-- rating -->
+    <div class="rating">
+      <ion-icon name="star" color="warning"></ion-icon>
+      {{ item()?.rating }}
+    </div>
+
+    <!-- wishlist -->
+    <div class="wishlist" align="center">
+      <ion-icon name="heart" color="danger"></ion-icon>
+    </div>
+  </ion-thumbnail>
+
+  <ion-item lines="none">
+    <ion-label>
+      <ion-text color="dark">
+        <strong>{{ item()?.name }}</strong>
+      </ion-text>
+      <p class="large text-weight-500">
+        <ion-text color="dark">
+          {{ currency }}<strong>{{ item()?.default_price }}</strong>
+        </ion-text>
+        @if(item()?.cut_price) {
+          <del class="small">{{ currency }}{{ item()?.cut_price }}</del>
+        }
+      </p>
+    </ion-label>
+
+    <app-veg-nonveg-indicator
+      slot="end"
+      class="indicator"
+      [type]="item()?.type!"
+    ></app-veg-nonveg-indicator>
+  </ion-item>
+</ion-card>
+}

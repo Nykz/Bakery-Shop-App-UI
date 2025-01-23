@@ -1,0 +1,13 @@
+ion-avatar {
+    background: var(--ion-color-light);
+    width: 8vh;
+    height: 8vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    img {
+        width: 70%;
+        height: 70%;
+        object-fit: cover;
+    }
+}

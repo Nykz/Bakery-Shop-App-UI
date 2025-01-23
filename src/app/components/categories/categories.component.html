@@ -1,0 +1,17 @@
+@defer(when categories().length > 0) { 
+  <ion-row>
+    <div class="container">
+      <swiper-container [modules]="swiperModules" [slidesPerView]="4">
+        @for(category of categories(); track $index) {
+        <swiper-slide>
+          <ion-col>
+            <app-image-circle [image]="category!.image"></app-image-circle>
+            <p class="small text-weight-500">{{ category?.name }}</p>
+          </ion-col>
+        </swiper-slide>
+        }
+      </swiper-container>
+    </div>
+  </ion-row>
+  }
+  

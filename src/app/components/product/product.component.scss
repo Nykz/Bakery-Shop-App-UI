@@ -1,0 +1,71 @@
+ion-card {
+  height: 14rem;
+  margin: 0.3rem 0;
+  border-radius: 8px;
+  ion-thumbnail {
+    position: relative;
+    width: 100%;
+    height: 10rem;
+    margin-bottom: 10px;
+    ion-img {
+      height: 100%;
+      border-radius: 8px 8px 0 0;
+    }
+
+    .rating {
+        position: absolute;
+        top: 8px; /* Adjust as per your design */
+        left: 8px; /* Adjust as per your design */
+        background: white; /* Optional: Add a semi-transparent background for better visibility */
+        padding: 4px 8px; /* Adjust padding as needed */
+        border-radius: 10px; /* Optional: Adds rounded corners */
+        display: flex;
+        align-items: center;
+        font-size: var(--font-size-small); /* Adjust font size if necessary */
+        font-weight: 600;
+        ion-icon {
+          margin-right: 4px; /* Adds spacing between the icon and text */
+        }
+      }
+      .wishlist {
+        position: absolute;
+        top: 8px; /* Adjust as per your design */
+        right: 8px; /* Adjust as per your design */
+        background: white; /* Optional: Add a semi-transparent background for better visibility */
+        padding: 5px; /* Adjust padding as needed */
+        border-radius: 50px; /* Optional: Adds rounded corners */
+        display: flex;
+        align-items: center;
+        font-size: var(--icon-size-medium); /* Adjust font size if necessary */
+      }
+  }
+
+  ion-item {
+    --inner-padding-end: 5px;
+    --padding-start: 5px;
+  }
+  ion-label {
+    font-size: var(--font-size-medium);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 16vh;
+    // display: block; /* Ensure the label is treated as a block element */
+  }
+
+  ion-label,
+  p {
+    margin: 0;
+  }
+
+  p {
+    margin-top: 8px;
+    del {
+      margin-inline-start: 0.8vh;
+    }
+  }
+}
+
+.indicator {
+  align-self: start;
+}

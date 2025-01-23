@@ -1,0 +1,155 @@
+<ion-content [fullscreen]="true">
+  <ion-header class="ion-no-border" slot="fixed">
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-back-button
+          mode="md"
+          defaultHref="/tabs/home"
+          class="btnBg btnBgLight"
+        ></ion-back-button>
+      </ion-buttons>
+
+      <ion-buttons slot="end">
+        <ion-fab-button size="small" class="btnBg btnBgLight">
+          <ion-icon name="heart-outline" color="dark"></ion-icon>
+        </ion-fab-button>
+
+        <ion-fab-button size="small" class="btnBg btnBgLight">
+          <ion-icon name="share-social-outline" color="dark"></ion-icon>
+        </ion-fab-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+
+  @let pdt = productDetails();
+
+  <div [style.backgroundImage]="'url(' + pdt?.image + ')'" class="bg">
+    <ion-row class="bottom-center">
+      @for(image of [1,2,3,4,5]; track $index) {
+      <ion-col size="auto">
+        <app-image-rect-box
+          [image]="'assets/products/chocolate-cake.jpg'"
+        ></app-image-rect-box>
+      </ion-col>
+      }
+    </ion-row>
+  </div>
+
+  <ion-list lines="none" class="ion-margin">
+    <ion-item class="item">
+      <ion-label class="medium">
+        {{pdt?.category?.name}}
+        <p class="xlarge mt text-weight-500">
+          <ion-text color="dark"> {{pdt?.name}} </ion-text>
+        </p>
+      </ion-label>
+
+      <ion-col slot="end" class="ion-text-end">
+        <ion-row class="rating medium">
+          <ion-icon name="star" color="warning"></ion-icon>
+          {{pdt?.rating}}
+        </ion-row>
+        <ion-row class="mt">
+          <app-veg-nonveg-indicator
+            [type]="pdt?.type!"
+          ></app-veg-nonveg-indicator>
+        </ion-row>
+      </ion-col>
+    </ion-item>
+
+    <ion-list-header class="medium text-weight-500"> Seller </ion-list-header>
+
+    <ion-item class="seller">
+      <ion-avatar slot="start">
+        <img src="assets/imgs/cook.jpg" />
+      </ion-avatar>
+
+      <ion-label>
+        <ion-text class="text-title text-weight-500" color="dark"
+          >{{ pdt?.seller?.name }}</ion-text
+        >
+        <p class="small">{{ pdt?.seller?.role }}</p>
+      </ion-label>
+
+      <ion-fab-button slot="end" size="small" class="btnBg" color="light">
+        <ion-icon name="chatbox-ellipses" color="primary"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button slot="end" size="small" class="btnBg" color="light">
+        <ion-icon name="call" color="primary"></ion-icon>
+      </ion-fab-button>
+    </ion-item>
+
+    <ion-item class="description" lines="full">
+      <ion-label>
+        <ion-text class="large text-weight-500" color="dark"
+          >Description</ion-text
+        >
+
+        <div class="text-container">
+          <p class="medium" [ngClass]="{'expanded': readMore()}">{{ pdt?.description }}</p>
+
+          @if(!readMore()) {
+          <ion-button
+            size="small"
+            fill="clear"
+            color="primary"
+            class="ion-no-margin"
+            (click)="readMore.set(true)"
+          >
+            Read more
+          </ion-button>
+          }
+        </div>
+      </ion-label>
+    </ion-item>
+
+    @if(pdt?.varieties?.length! > 0) {
+      <ion-list-header class="large text-weight-500">
+        Select Option
+      </ion-list-header>
+
+      <ion-row class="sizes">
+        @for(variety of pdt?.varieties; track $index) {
+        <ion-col>
+          <ion-button 
+            size="small" 
+            [ngClass]="{ 'selected': variety?.is_default}"
+          >
+          {{variety?.quantity}} {{variety?.unit}}
+          </ion-button>
+        </ion-col>
+        }
+      </ion-row>
+    }
+  </ion-list>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-row>
+      <ion-col size="4">
+        <ion-label class="medium">
+          Total Price
+          <p class="large text-weight-500">
+            <ion-text color="dark"
+              >{{ currency + pdt?.default_price }}</ion-text
+            >
+          </p>
+        </ion-label>
+      </ion-col>
+
+      <ion-col size="8">
+        <ion-button
+          size="large"
+          expand="block"
+          shape="round"
+          [strong]="true"
+          mode="ios"
+        >
+          <ion-icon slot="start" name="bag-handle"></ion-icon>
+          <ion-text class="large">Add to Cart</ion-text>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-toolbar>
+</ion-footer>
